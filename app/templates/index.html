@@ -1,3 +1,6 @@
+{% import 'macros.html' as macro%}
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,10 +13,13 @@
     </head>
     <body>
         <h3>food Nutrients</h3>
-        {% for foodNutrients in nutrients%}
+        <!-- {% for foodNutrients in nutrients%}
         <ul>
         <li> {{foodNutrients. name}} </li>
         </ul>
-        {% endfor %}
+        {% endfor %} -->
+
+        {{macro.displayfoods(nutrients)}}
+
     </body>
 </html>
