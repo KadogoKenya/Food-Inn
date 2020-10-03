@@ -3,9 +3,9 @@ class Config:
     General configuration parent class
     '''
     
-    FOOD_API_BASE_URL ='https://api.themoviedb.org/3/movie/{}?api_key={}'
+    FOOD_API_BASE_URL ='https://api.nal.usda.gov/fdc/v1/foods/list?api_key={}'
 
-
+    # https://api.nal.usda.gov/fdc/v1/foods/list?api_key={}
 
 class ProdConfig(Config):
     '''
