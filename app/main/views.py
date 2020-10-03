@@ -1,5 +1,6 @@
 from flask import render_template
 from app import app
+from .request import get_foods
 
 # Views
 @app.route('/')
@@ -11,4 +12,8 @@ def index():
     
     title = 'Home - Welcome to Food-Inn online based meals'
     
-    return render_template('index.html', title=title)
+    foodNutrients=get_foods("nutrients")
+
+    print(foodNutrients)
+
+    return render_template('index.html', title=title, nutrients=foodNutrients)
