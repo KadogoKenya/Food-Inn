@@ -28,7 +28,7 @@ def get_foods(category):
     return food_results
 
 
-def process_results(movie_list):
+def process_results(food_list):
     '''
     Function  that processes the food result and transform them to a list of Objects
 
@@ -45,8 +45,8 @@ def process_results(movie_list):
         publicationDate = food_item.get('publicationDate')
         
 
-        if poster:
-            food_object = Food(fcId,fcId,publicationDate)
-            food_results.append(food_object)
+        # if poster:
+        #     food_object = Food(fcId,fcId,publicationDate)
+        #     food_results.append(food_object)
 
     return food_results
