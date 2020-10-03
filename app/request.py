@@ -26,3 +26,27 @@ def get_foods(category):
 
 
     return food_results
+
+
+def process_results(movie_list):
+    '''
+    Function  that processes the food result and transform them to a list of Objects
+
+    Args:
+        food_list: A list of dictionaries that contain food details
+
+    Returns :
+        food_results: A list of food objects
+    '''
+    food_results = []
+    for food_item in food_list:
+        fcId = food_item.get('fcId')
+        description = food_item.get('description')
+        publicationDate = food_item.get('publicationDate')
+        
+
+        if poster:
+            food_object = Food(fcId,fcId,publicationDate)
+            food_results.append(food_object)
+
+    return food_results
