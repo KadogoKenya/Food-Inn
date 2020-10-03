@@ -8,3 +8,5 @@ class Food:
         self.fdcId=fdcId
         self.description=description
         self.publicationDate=publicationDate
+
+        
