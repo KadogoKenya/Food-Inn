@@ -1,0 +1,7 @@
+{% macros displayfoods(food_list)%}
+
+    {% for food in food_list %}
+        <li> {{food.name}} </li>
+    {% endfor %}
+
+{% endmacro %}
