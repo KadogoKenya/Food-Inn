@@ -5,4 +5,6 @@ class Food:
 
     def __init__(self,fdcId,description,publicationDate)
 
-        
+        self.fdcId=fdcId
+        self.description=description
+        self.publicationDate=publicationDate
