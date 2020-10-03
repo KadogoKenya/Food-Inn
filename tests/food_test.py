@@ -19,6 +19,6 @@ class FoodTest(unittest.TestCase):
         self.assertTrue(isinstance(self.new_food,Food))
 
 if __name__ == "__main__":
-    main
+    unittest.main()
 
          
