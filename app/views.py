@@ -12,8 +12,8 @@ def index():
     
     title = 'Home - Welcome to Food-Inn online based meals'
     
-    foodNutrients=get_foods("nutrients")
+    foodNutrients=get_foods()
 
     print(foodNutrients)
 
-    return render_template('index.html', title=title, nutrients=foodNutrients)
+    return render_template('index.html', title=title, foodNutrients=foodNutrients)
