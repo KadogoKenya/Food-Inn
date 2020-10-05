@@ -42,10 +42,10 @@ def process_results(giphy_list):
         id = giphy_item.get('id')
         url=giphy_item.get('url')
         title=giphy_item.get('title')
-        images=giphy_item.get('images')
+        images=giphy_item.get('images').get('downsized').get('url')
 
 
-        if url:
+        if id:
             giphy_object = Giphy(id,url,title,images)
             giphy_results.append(giphy_object)
 
