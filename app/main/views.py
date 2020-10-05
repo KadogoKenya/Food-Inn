@@ -68,3 +68,13 @@ def comment(role_id):
         new_comment.save_c()
         return redirect(url_for('.comment', role_id = role_id))
     return render_template('comment.html', form =form, role = role,all_comments=all_comments)
+
+
+@main.route('/user/<uname>')
+def profile(uname):
+    user = User.query.filter_by(username = uname).first()
+
+    if user is None:
+        abort(404)
+
+    return render_template("profile/profile.html", user = user)
