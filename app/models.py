@@ -45,4 +45,4 @@ class Comment(db.Model):
         return f'User {self.name}'
         comment = db.Column(db.Text(),nullable = False)
         users = db.Column(db.Integer,db.ForeignKey('users.id'),nullable = False)
-        role_id = db.Column(db.Integer,db.ForeignKey('role.id'),nullable = False)
+        role_id = db.Column(db.Integer,db.ForeignKey('roles.id'),nullable = False)
