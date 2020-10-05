@@ -35,18 +35,29 @@ def giphy(id):
 
     return render_template('giphy.html',title = title,giphy = giphy)
 
-@main.route('/search/<movie_name>')
+@main.route('/search/<search_name>')
 def search(giphy_name):
     '''
     View function to display the search results
     '''
     giphy_name_list = giphy_name.split(" ")
     giphy_name_format = "+".join(movie_name_list)
-    searched_giphys = search_movie(giphy_name_format)
+    searched_giphys = search_giphy(giphy_name_format)
     title = f'search results for {giphy_name}'
     return render_template('search.html', giphys = searched_giphys)
 
 
-@main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
+@main.route('/comment/<int:id>', methods = ['GET','POST'])
 @login_required
 def comment(role_id):
+    form = CommentForm()
+    role = Role.query.get(role_id)
+    all_comments = Comment.query.filter_by(role_id = role_id).all()
+    if form.validate_on_submit():
+        comment = form.comment.data 
+        role_id = role_id
+        user_id = current_user._get_current_object().id
+        new_comment = Comment(comment = comment,user_id = user_id,pitch_id = pitch_id)
+        new_comment.save_c()
+        return redirect(url_for('.comment', role_id = role_id))
+    return render_template('comment.html', form =form, role = role,all_comments=all_comments)
