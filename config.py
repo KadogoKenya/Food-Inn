@@ -10,7 +10,9 @@ class Config:
     GIPHY_API_KEY = os.environ.get('GIPHY_API_KEY')
     SECRET_KEY = os.environ.get('SECRET_KEY')
 
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://username:password@localhost/Giphy'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://kate:Kanini12@localhost/giphy'
+
+    SQLALCHEMY_TRACK_MODIFICATIONS=False    
 
 class ProdConfig(Config):
     '''

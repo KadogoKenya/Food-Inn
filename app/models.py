@@ -2,6 +2,8 @@ from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
+from datetime import datetime
+
 
 
 
@@ -18,6 +20,10 @@ class Giphy:
         self.title=title
         self.images=images
 
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 class User(UserMixin,db.Model):
     __tablename__ = 'users'
@@ -57,18 +63,28 @@ class Role(db.Model):
     def __repr__(self):
         return f'User {self.name}'
 
-class comment(db.Model):
-    __tablename__ = 'comments'
-
-    id = db.Column(db.Integer,primary_key = True)
+class comment(db.Model):    
     
+    id = db.Column(db.Integer, primary_key = True)
+    comment_post = db.Column(db.String(255), index=True)
+    time = db.Column(db.DateTime, default=datetime.utcnow)
+    role_id = db.Column(db.Integer, db.ForeignKey('role.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    
+    def save_comments(self):
+        db.session.add(self)
+        db.session.commit()
 
-    def __repr__(self):
-        return f'User {self.name}'
-        comment = db.Column(db.Text(),nullable = False)
-        users = db.Column(db.Integer,db.ForeignKey('users.id'),nullable = False)
-        role_id = db.Column(db.Integer,db.ForeignKey('roles.id'),nullable = False)
+    @classmethod
+    def get_comments(cls, id):
+        comments = Comment.query.filter_by(post_id=id).all()
+        return comments
+        
 
-    @login_manager.user_loader
-    def load_user(user_id):
-        return User.query.get(int(user_id))
+    # def __repr__(self):
+    #     return f'User {self.name}'
+        
+
+    # @login_manager.user_loader
+    # def load_user(user_id):
+    #     return User.query.get(int(user_id))

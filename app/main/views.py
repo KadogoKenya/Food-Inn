@@ -2,7 +2,10 @@ from flask import render_template,request,redirect,url_for
 from . import main
 from ..request import get_giphys,get_giphy,search_giphy
 from ..models import Giphy
-from flask_login import login_required
+# from flask_login import login_required
+from flask_login import login_user,logout_user,login_required
+
+
 # Views
 @main.route('/')
 def index():
