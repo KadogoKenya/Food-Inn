@@ -7,11 +7,11 @@ from flask_login import login_user,logout_user,login_required
 
 
 # Viewsout
-@main.route('/homepage')
+@main.route('/')
 def homepage():
     return render_template('homepage.html')
 
-@main.route('/')
+@main.route('/index')
 def index():
 
     '''
