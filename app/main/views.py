@@ -6,7 +6,11 @@ from ..models import Giphy
 from flask_login import login_user,logout_user,login_required
 
 
-# Views
+# Viewsout
+@main.route('/homepage')
+def homepage():
+    return render_template('homepage.html')
+
 @main.route('/')
 def index():
 
