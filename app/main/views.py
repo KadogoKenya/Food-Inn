@@ -1,9 +1,9 @@
 from flask import render_template,request,redirect,url_for
-from app import app
-from .request import get_giphys,get_giphy,search_giphy
-
+from . import main
+from ..request import get_giphys,get_giphy,search_giphy
+from ..models import Giphy
 # Views
-@app.route('/')
+@main.route('/')
 def index():
 
     '''
@@ -23,7 +23,7 @@ def index():
     else:
         return render_template('index.html', title = title, giphys=giphy)
 
-@app.route('/giphy/<int:url>')
+@main.route('/giphy/<int:url>')
 def giphy(id):
 
     '''
@@ -34,7 +34,7 @@ def giphy(id):
 
     return render_template('giphy.html',title = title,giphy = giphy)
 
-@app.route('/search/<movie_name>')
+@main.route('/search/<movie_name>')
 def search(giphy_name):
     '''
     View function to display the search results

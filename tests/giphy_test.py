@@ -1,5 +1,5 @@
 import unittest
-from models import Giphy
+from ..models import Giphy
 
 Giphy=giphy.Giphy
 

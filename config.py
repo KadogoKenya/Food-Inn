@@ -1,3 +1,5 @@
+import os
+
 class Config:
     '''
     General configuration parent class
@@ -5,6 +7,10 @@ class Config:
     
     GIPHY_API_BASE_URL='https://api.giphy.com/v1/gifs/trending?api_key={}&limit=50&rating=g'
     # GIPHY_API_KEY=''
+    GIPHY_API_KEY = os.environ.get('GIPHY_API_KEY')
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://username:password@localhost/Giphy'
 
 class ProdConfig(Config):
     '''
@@ -25,3 +31,8 @@ class DevConfig(Config):
     '''
 
     DEBUG = True
+
+config_options = {
+'development':DevConfig,
+'production':ProdConfig
+}
