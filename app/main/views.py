@@ -1,4 +1,4 @@
-from flask import render_template,request,redirect,url_for
+from flask import render_template,request,redirect,url_for,about
 from . import main
 from ..request import get_giphys,get_giphy,search_giphy
 from ..models import Giphy
