@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+<!-- {% import 'macros.html' as macro%} -->
+{% block content %}
+    <div class="container">
+
+        <div class="row">
+
+            <h3> Found {{ giphys| count }} matches </h3>
+            <hr>
+            <!-- <ul>
+                {{ macro.displayGiphyList(giphys)}}
+            </ul> -->
+
+        </div>
+
+    </div>
+{% endblock %}

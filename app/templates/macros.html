@@ -1,7 +1,24 @@
-<!-- {% macro displayGiphyList(giphys_list) %}
+<!-- {% macro displayGiphyList(giphy_list) %}
 
-    {% for giphy in giphys_list %}
-        <li> {{giphy.image}} </li>
+{% block navbar %}
+    {% include 'navbar.html' %}
+{% endblock %}
+
+
+    {% for giphy in giphy_list %}
+        <li>{{ giphy.title}}</li>
     {% endfor %}
+
+    {% block content %}
+    {% for giphy in giphys %}
+    <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 giphy-card">
+        <img src="{{ giphy.images}}" alt="{{ giphy.url }} images" class="img-responsive img-thumbnail">
+        <li class="text-center">
+            <a href="/giphy/{{giphy.id}}">
+                {{ giphy.title|truncate(10)}}</a>
+        </li>
+    </div>
+    {% endfor %}
+    {% endblock %}
 
 {% endmacro %} -->
