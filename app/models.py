@@ -1,6 +1,8 @@
 from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
+from . import login_manager
+
 
 
 
@@ -66,3 +68,7 @@ class comment(db.Model):
         comment = db.Column(db.Text(),nullable = False)
         users = db.Column(db.Integer,db.ForeignKey('users.id'),nullable = False)
         role_id = db.Column(db.Integer,db.ForeignKey('roles.id'),nullable = False)
+
+    @login_manager.user_loader
+    def load_user(user_id):
+    return User.query.get(int(user_id))
