@@ -29,6 +29,8 @@ class Role(db.Model):
 
     id = db.Column(db.Integer,primary_key = True)
     name = db.Column(db.String(255))
+    users = db.relationship('User',backref = 'role',lazy="dynamic")
+
 
     def __repr__(self):
         return f'User {self.name}'
@@ -42,5 +44,5 @@ class Comment(db.Model):
     def __repr__(self):
         return f'User {self.name}'
         comment = db.Column(db.Text(),nullable = False)
-        user_id = db.Column(db.Integer,db.ForeignKey('users.id'),nullable = False)
+        users = db.Column(db.Integer,db.ForeignKey('users.id'),nullable = False)
         role_id = db.Column(db.Integer,db.ForeignKey('role.id'),nullable = False)
