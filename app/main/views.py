@@ -1,10 +1,12 @@
-from flask import render_template,request,redirect,url_for,about
+from flask import render_template,request,redirect,url_for,abort
 from . import main
 from ..request import get_giphys,get_giphy,search_giphy
 from ..models import Giphy
 # from flask_login import login_required
 from flask_login import login_user,logout_user,login_required
 from .forms import UpdateProfile
+from .. import db,photos
+from flask import flash
 
 
 # Viewsout
@@ -54,21 +56,6 @@ def search(giphy_name):
     title = f'search results for {giphy_name}'
     return render_template('search.html', giphys = searched_giphys)
 
-
-@main.route('/comment/<int:id>', methods = ['GET','POST'])
-@login_required
-def comment(role_id):
-    form = CommentForm()
-    role = Role.query.get(role_id)
-    all_comments = Comment.query.filter_by(role_id = role_id).all()
-    if form.validate_on_submit():
-        comment = form.comment.data 
-        role_id = role_id
-        user_id = current_user._get_current_object().id
-        new_comment = Comment(comment = comment,user_id = user_id,pitch_id = pitch_id)
-        new_comment.save_c()
-        return redirect(url_for('.comment', role_id = role_id))
-    return render_template('comment.html', form =form, role = role,all_comments=all_comments)
 
 
 @main.route('/user/<uname>')

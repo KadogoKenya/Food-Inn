@@ -4,13 +4,14 @@ from config import config_options
 from config import DevConfig
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_uploads import UploadSet,configure_uploads,IMAGES
 
 
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
 login_manager.login_view = 'auth.login'
 
-
+photos = UploadSet('photos',IMAGES)
 
 # Initializing application
 app = Flask(__name__,instance_relative_config = True)
@@ -18,6 +19,8 @@ app = Flask(__name__,instance_relative_config = True)
 # Setting up configuration
 app.config.from_object(DevConfig)
 app.config.from_pyfile('config.py')
+
+configure_uploads(app,photos)
 
 # Initializing Flask Extensions
 bootstrap = Bootstrap(app)

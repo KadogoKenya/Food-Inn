@@ -12,7 +12,9 @@ class Config:
 
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://kate:Kanini12@localhost/giphy'
 
-    SQLALCHEMY_TRACK_MODIFICATIONS=False    
+    SQLALCHEMY_TRACK_MODIFICATIONS=False   
+
+    UPLOADED_PHOTOS_DEST ='app/static/photos' 
 
 class ProdConfig(Config):
     '''

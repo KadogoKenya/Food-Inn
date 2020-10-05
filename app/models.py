@@ -66,28 +66,20 @@ class Role(db.Model):
     def __repr__(self):
         return f'User {self.name}'
 
-class comment(db.Model):    
+# class comment(db.Model):    
     
-    id = db.Column(db.Integer, primary_key = True)
-    comment_post = db.Column(db.String(255), index=True)
-    time = db.Column(db.DateTime, default=datetime.utcnow)
-    role_id = db.Column(db.Integer, db.ForeignKey('role.id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+#     id = db.Column(db.Integer, primary_key = True)
+#     comment_post = db.Column(db.String(255), index=True)
+#     time = db.Column(db.DateTime, default=datetime.utcnow)
+#     role_id = db.Column(db.Integer, db.ForeignKey('role.id'))
+#     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     
-    def save_comments(self):
-        db.session.add(self)
-        db.session.commit()
+#     def save_comments(self):
+#         db.session.add(self)
+#         db.session.commit()
 
-    @classmethod
-    def get_comments(cls, id):
-        comments = Comment.query.filter_by(post_id=id).all()
-        return comments
+#     @classmethod
+#     def get_comments(cls, id):
+#         comments = Comment.query.filter_by(post_id=id).all()
+#         return comments
         
-
-    # def __repr__(self):
-    #     return f'User {self.name}'
-        
-
-    # @login_manager.user_loader
-    # def load_user(user_id):
-    #     return User.query.get(int(user_id))
