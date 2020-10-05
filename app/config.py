@@ -3,9 +3,8 @@ class Config:
     General configuration parent class
     '''
     
-    FOOD_API_BASE_URL ='https://api.nal.usda.gov/fdc/v1/foods/list?api_key={}'
-
-    # https://api.nal.usda.gov/fdc/v1/foods/list?api_key={}
+    GIPHY_API_BASE_URL='https://api.giphy.com/v1/gifs/trending?api_key={}&limit=50&rating=g'
+    # GIPHY_API_KEY=''
 
 class ProdConfig(Config):
     '''

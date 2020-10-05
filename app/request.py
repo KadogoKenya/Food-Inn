@@ -1,34 +1,33 @@
 from app import app
 import urllib.request,json
-from .models import Food
-
-# url = "http://quotes.stormconsultancy.co.uk/random.json"
-# getting the api key
-api_key=app.config['FOOD_API_KEY']
-base_url=app.config["FOOD_API_BASE_URL"]
+from models import Giphy
 
 
-def get_foods():
+api_key=app.config['GIPHY_API_KEY']
+base_url=app.config["GIPHY_API_BASE_URL"]
+
+
+def get_giphys():
     '''
     Function that gets the json response to our url request
     '''
-    get_foods_url = base_url.format(api_key)
+    get_giphys_url = base_url.format(api_key)
 
-    with urllib.request.urlopen(get_foods_url) as url:
-        get_foods_data = url.read()
-        get_foods_response = json.loads(get_foods_data)
+    with urllib.request.urlopen(get_giphys_url) as url:
+        get_giphys_data = url.read()
+        get_giphys_response = json.loads(get_giphys_data)
 
-        food_results = []
+        giphy_results = None
 
-        if get_foods_response[results.name]:
-            food_results_list = get_foods_response[results.name]
-            food_results = process_results(food_results_list)
-
-
-    return food_results
+        if get_giphys_response['data']:
+            giphy_results_list = get_giphys_response['data']
+            giphy_results = process_results(giphy_results_list)
 
 
-def process_results(food_list):
+    return giphy_results
+
+
+def process_results(giphy_list):
     '''
     Function  that processes the food result and transform them to a list of Objects
 
@@ -38,10 +37,39 @@ def process_results(food_list):
     Returns :
         food_results: A list of food objects
     '''
-    food_results = []
-    for food_item in food_list:
-        fcId = food_item.get('fcId')
-        description = food_item.get('description')
-        publicationDate = food_item.get('publicationDate')
+    giphy_results = []
+    for giphy_item in giphy_list:
+        id = giphy_item.get('id')
+        url=giphy_item.get('url')
+        title=giphy_item.get('title')
+        images=giphy_item.get('images')
 
-    return food_results
+
+        if url:
+            giphy_object = Giphy(id,url,title,images)
+            giphy_results.append(giphy_object)
+
+    return giphy_results
+
+
+def get_giphy(id):
+    get_giphy_details_url = base_url.format(id,api_key)
+
+    with urllib.request.urlopen(get_giphy_details_url) as url:
+        giphy_details_data = url.read()
+        giphy_details_response = json.loads(giphy_details_data)
+
+        giphy_object = None
+        if giphy_details_response:
+            id = giphy_details_response.get('id')
+            url=giphy_details_response.get('url')
+            title=giphy_details_response.get('title')
+            images=giphy_details_response.get('images')
+            
+
+            giphy_object = Giphy(id,url,title,images)
+
+    return giphy_object
+
+
+        

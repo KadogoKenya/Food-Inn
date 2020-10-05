@@ -1,27 +1,33 @@
-{% import 'macros.html' as macro%}
-
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        {% if title %}
-        <title> {{ title }}</title>
-        {% else %}
-        <title> Welcome to the best Movie Review website </title>
-        {% endif %}
-    </head>
-    <body>
-        <h3>food Nutrients</h3>
-        <!-- {% for foodNutrients in nutrients%}
-        <ul>
-        <li> {{foodNutrients. name}} </li>
-        </ul>
-        {% endfor %} -->
-        <ul>
-            {{macro.displayfoods(nutrients)}}
-        </ul>
-        
 
-    </body>
+<head>
+    <meta charset="utf-8"> {% if title %}
+    <title> {{ title }}</title>
+    {% else %}
+    <title> Welcome to the best Movie Review website </title>
+    {% endif %}
+</head>
+<!-- Popular movie section  -->
+<h3> Giphys</h3>
+<!-- <ul>
+    {% for giphy in giphys %}
+    <li>{{ giphy.title}}</li>
+    {% endfor %}
+</ul> -->
+
+{% for giphy in giphys %}
+<div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 giphy-card">
+    <img src="{{ giphy.images }}" alt="{{ giphy.title }} images" class="img-responsive">
+    <li class="text-center">
+        <a href="/giphy/{{giphy.id}}">
+            {{ giphy.title|truncate(10)}}</a>
+    </li>
+</div>
+{% endfor %}
+
+<body>
+
+</body>
+
 </html>
