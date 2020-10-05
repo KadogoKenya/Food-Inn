@@ -1,5 +1,8 @@
 from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
+from flask_login import UserMixin
+
+
 
 class Giphy:
     '''
@@ -49,7 +52,7 @@ class Role(db.Model):
     def __repr__(self):
         return f'User {self.name}'
 
-class Comment(db.Model):
+class comment(db.Model):
     __tablename__ = 'comments'
 
     id = db.Column(db.Integer,primary_key = True)

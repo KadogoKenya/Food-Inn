@@ -2,6 +2,7 @@ from flask import render_template,request,redirect,url_for
 from . import main
 from ..request import get_giphys,get_giphy,search_giphy
 from ..models import Giphy
+from flask_login import login_required
 # Views
 @main.route('/')
 def index():
@@ -46,21 +47,6 @@ def search(giphy_name):
     return render_template('search.html', giphys = searched_giphys)
 
 
-# @app.route('/')
-# def index():
-
-#     '''
-#     View root page function that returns the index page and its data
-#     '''
-
-#     # Getting giphys
-#     giphy=get_giphys()
-
-#     title = 'Home - Welcome to The giphy zone'
-
-#     search_giphy = request.args.get('giphy_query')
-
-#     if search_giphy:
-#         return redirect(url_for('search',giphy_name=search_giphy))
-#     else:
-#         return render_template('index.html', title = title, giphys=giphy)
+@main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
+@login_required
+def comment(role_id):
