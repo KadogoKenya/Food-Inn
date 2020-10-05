@@ -1,5 +1,6 @@
 import unittest
 from ..models import Giphy
+from app.models import User
 
 Giphy=giphy.Giphy
 
@@ -17,6 +18,15 @@ class GiphyTest(unittest.TestCase):
         
     def test_instance(self):
         self.assertTrue(isinstance(self.new_giphy,Giphy))
+
+class UserModelTest(unittest.TestCase):
+
+    def setUp(self):
+        self.new_user = User(password = 'banana')
+
+    def test_password_setter(self):
+        self.assertTrue(self.new_user.pass_secure is not None)
+        
 
 if __name__ == "__main__":
     unittest.main()
