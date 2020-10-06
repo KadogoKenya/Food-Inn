@@ -51,7 +51,7 @@ def search(giphy_name):
     View function to display the search results
     '''
     giphy_name_list = giphy_name.split(" ")
-    giphy_name_format = "+".join(movie_name_list)
+    giphy_name_format = "+".join(giphy_name_list)
     searched_giphys = search_giphy(giphy_name_format)
     title = f'search results for {giphy_name}'
     return render_template('search.html', giphys = searched_giphys)
