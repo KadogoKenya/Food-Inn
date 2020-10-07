@@ -1,12 +1,17 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
 from ..request import get_giphys,get_giphy,search_giphy
-from ..models import Giphy
+from ..models import Giphy,User
 # from flask_login import login_required
 from flask_login import login_user,logout_user,login_required
 from .forms import UpdateProfile
 from .. import db,photos
 from flask import flash
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+
 
 
 # Viewsout
@@ -72,6 +77,11 @@ def profile(uname):
 @login_required
 def update_profile(uname):
     user = User.query.filter_by(username = uname).first()
+    if 'photo' in request.files:
+        filename=request.files['photo']
+        upload=cloudinary.uploader.upload(filename) 
+        path = upload.get('url')
+
     if user is None:
         abort(404)
 

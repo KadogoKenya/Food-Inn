@@ -69,7 +69,7 @@ def get_giphy(id):
         if giphy_details_response:
             id = giphy_details_response.get('id')
             url=giphy_details_response.get('url')
-            title=giphy_details_response.get('title')
+            title=giphy_details_response.get('url')
             images=giphy_details_response.get('images')
             
 
@@ -79,7 +79,8 @@ def get_giphy(id):
 
 
 def search_giphy(movie_name):
-    search_giphy_url = 'https://api.themoviedb.org/3/search/movie?api_key={}&query={}'.format(api_key,giphy_name)
+    search_giphy_url = 'https://api.giphy.com/v1/gifs/search?api_key={}&q={}'.format(api_key,giphy_name)
+
     with urllib.request.urlopen(search_giphy_url) as url:
         search_giphy_data = url.read()
         search_giphy_response = json.loads(search_giphy_data)
