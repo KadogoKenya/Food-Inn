@@ -81,6 +81,8 @@ def update_profile(uname):
         filename=request.files['photo']
         upload=cloudinary.uploader.upload(filename) 
         path = upload.get('url')
+        user.profile_pic_path=path
+        db.session.commit()
 
     if user is None:
         abort(404)
@@ -95,4 +97,4 @@ def update_profile(uname):
 
         return redirect(url_for('.profile',uname=user.username))
 
-    return render_template('profile/update.html',form =form)
+    # return render_template('profile/update.html',form =form)
