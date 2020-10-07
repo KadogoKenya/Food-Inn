@@ -29,7 +29,10 @@ python3 manage.py test.
 Python3 Flask Heroku Postgresql HTML/CSS
 
 ## Known Bugs
-The profile cant be updated, search functionality not fully functional.
+The search functionality not fully functional.
+
+## Future implementation.
+Create full request for the search functionality.
 
 ## Support and Contact Details
 For any information comments,suggestions,feedback or inquiries, contact me via email: catherinekanini001@gmail.com
