@@ -19,6 +19,14 @@ class Config:
 
     cloudinary.config(cloud_name='dew5ge1ch', api_key='361751723152852', api_secret='l2VlpcjUV6Nk9Gh9qi5UCwqDyZ4')
 
+
+    #  email configurations
+    MAIL_SERVER = 'smtp.googlemail.com'
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
+    MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
+
 class ProdConfig(Config):
     '''
     Production  configuration child class
