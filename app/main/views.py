@@ -83,7 +83,7 @@ def update_profile(uname):
         path = upload.get('url')
         user.profile_pic_path=path
 
-        db.session.add(user)
+       
         db.session.commit()
 
     if user is None:
